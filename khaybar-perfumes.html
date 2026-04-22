@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khaybar — Luxury Perfumes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:    #0A1F0F;
+  --deep:      #061309;
+  --emerald:   #1A4A25;
+  --mid:       #2D7A42;
+  --sage:      #4DA668;
+  --pale:      #A8D4B4;
+  --gold:      #C9A84C;
+  --gold-lt:   #E8C97A;
+  --cream:     #F5EFE0;
+  --muted:     rgba(245,239,224,0.45);
+  --border:    rgba(200,168,76,0.2);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--forest);
+  color:var(--cream);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  cursor:none;
+}
+/* CUSTOM CURSOR */
+.cursor{
+  width:8px;height:8px;background:var(--gold);border-radius:50%;
+  position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
+  transition:transform 0.15s ease;
+}
+.cursor-ring{
+  width:32px;height:32px;border:1px solid rgba(201,168,76,0.4);border-radius:50%;
+  position:fixed;top:0;left:0;pointer-events:none;z-index:9998;
+  transition:transform 0.08s ease, width 0.2s, height 0.2s;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 4rem;
+  background:linear-gradient(to bottom, rgba(6,19,9,0.95), transparent);
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-weight:300;letter-spacing:0.25em;
+  text-transform:uppercase;color:var(--cream);text-decoration:none;
+}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:3rem;list-style:none}
+.nav-links a{
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color 0.3s;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.cart-icon{
+  font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--border);
+  padding:0.5rem 1.2rem;border-radius:1px;cursor:pointer;
+  transition:background 0.3s,color 0.3s;
+  background:transparent;font-family:'Jost',sans-serif;
+}
+.cart-icon:hover{background:var(--gold);color:var(--deep)}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;padding:0 4rem;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 60% 50%, #1A4A25 0%, #0A1F0F 50%, #061309 100%);
+}
+.hero-grain{
+  position:absolute;inset:0;opacity:0.06;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size:200px;
+}
+.hero-lines{
+  position:absolute;inset:0;overflow:hidden;opacity:0.06;
+}
+.hero-lines::before{
+  content:'';position:absolute;
+  top:-50%;left:40%;width:1px;height:200%;
+  background:linear-gradient(to bottom, transparent, var(--gold), transparent);
+  transform:rotate(15deg);
+}
+.hero-lines::after{
+  content:'';position:absolute;
+  top:-50%;left:60%;width:1px;height:200%;
+  background:linear-gradient(to bottom, transparent, var(--sage), transparent);
+  transform:rotate(15deg);
+}
+.hero-content{position:relative;max-width:650px}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:1rem;margin-bottom:2rem;
+  animation:fadeUp 1s ease both;
+}
+.eyebrow-line{width:40px;height:1px;background:var(--gold)}
+.eyebrow-text{
+  font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3.5rem,7vw,6.5rem);
+  font-weight:300;line-height:1.0;
+  animation:fadeUp 1s 0.2s ease both;
+}
+.hero h1 em{font-style:italic;color:var(--gold-lt)}
+.hero-sub{
+  font-size:0.9rem;color:var(--muted);line-height:1.9;
+  margin-top:1.8rem;max-width:420px;
+  animation:fadeUp 1s 0.4s ease both;
+}
+.hero-actions{
+  display:flex;gap:1rem;margin-top:2.5rem;
+  animation:fadeUp 1s 0.6s ease both;
+}
+.btn-gold{
+  background:var(--gold);color:var(--deep);
+  padding:0.9rem 2.2rem;border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:0.72rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  transition:background 0.3s,transform 0.2s;
+}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px)}
+.btn-ghost{
+  background:transparent;color:var(--cream);
+  padding:0.9rem 2.2rem;border:1px solid var(--border);cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:0.72rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  transition:border-color 0.3s,color 0.3s;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-bottle{
+  position:absolute;right:6%;top:50%;transform:translateY(-50%);
+  width:340px;animation:fadeUp 1s 0.3s ease both;
+}
+.hero-bottle svg{width:100%;filter:drop-shadow(0 40px 80px rgba(45,122,66,0.3))}
+.hero-scroll{
+  position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--muted);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+  animation:fadeUp 1s 0.8s ease both;
+}
+.scroll-line{
+  width:1px;height:50px;
+  background:linear-gradient(to bottom,var(--gold),transparent);
+  animation:scrollDown 2s ease infinite;
+}
+
+/* MARQUEE */
+.marquee-section{
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:1rem 0;overflow:hidden;background:var(--deep);
+}
+.marquee-track{
+  display:flex;gap:3rem;white-space:nowrap;
+  animation:marquee 25s linear infinite;
+}
+.marquee-item{
+  font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:1rem;flex-shrink:0;
+}
+.marquee-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
+
+/* ABOUT */
+.about{
+  padding:8rem 4rem;display:grid;
+  grid-template-columns:1fr 1fr;gap:6rem;align-items:center;
+}
+.about-left .tag{
+  font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);border-bottom:1px solid var(--border);
+  padding-bottom:0.5rem;display:inline-block;margin-bottom:2rem;
+}
+.about-left h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3.5rem);font-weight:300;line-height:1.2;
+  margin-bottom:1.5rem;
+}
+.about-left h2 em{font-style:italic;color:var(--gold-lt)}
+.about-left p{font-size:0.88rem;color:var(--muted);line-height:1.9;margin-bottom:1rem}
+.stat-row{display:flex;gap:2rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)}
+.stat-item{}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:300;color:var(--gold);display:block;
+}
+.stat-lbl{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+.about-right{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);
+}
+.about-box{
+  background:var(--forest);padding:2rem;
+  display:flex;flex-direction:column;justify-content:flex-end;min-height:180px;
+}
+.about-box-icon{margin-bottom:auto;padding-bottom:1.5rem}
+.about-box h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:400;margin-bottom:0.4rem;
+}
+.about-box p{font-size:0.78rem;color:var(--muted);line-height:1.6}
+
+/* COLLECTION */
+.collection{padding:6rem 4rem;background:var(--deep)}
+.col-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:4rem;
+}
+.col-header h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3.2rem);font-weight:300;
+}
+.col-header h2 em{font-style:italic;color:var(--gold-lt)}
+.filter-tabs{display:flex;gap:0.5rem}
+.filter-tab{
+  background:none;border:1px solid transparent;
+  color:var(--muted);font-size:0.65rem;letter-spacing:0.18em;
+  text-transform:uppercase;padding:0.5rem 1rem;cursor:pointer;
+  font-family:'Jost',sans-serif;transition:all 0.2s;border-radius:1px;
+}
+.filter-tab.active,.filter-tab:hover{
+  border-color:var(--border);color:var(--gold);
+}
+.perfume-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;
+  background:var(--border);
+}
+.perfume-card{
+  background:var(--forest);padding:2rem 1.8rem;
+  cursor:pointer;transition:background 0.3s;
+  position:relative;overflow:hidden;
+  display:none;
+}
+.perfume-card.show{display:block}
+.perfume-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(45,122,66,0.1) 0%, transparent 60%);
+  opacity:0;transition:opacity 0.3s;
+}
+.perfume-card:hover{background:#0d2912}
+.perfume-card:hover::before{opacity:1}
+.perfume-icon{
+  width:90px;height:120px;margin:0 auto 1.5rem;display:block;
+  transition:transform 0.4s ease;
+}
+.perfume-card:hover .perfume-icon{transform:translateY(-6px) scale(1.04)}
+.perfume-family{
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--sage);margin-bottom:0.5rem;display:block;
+}
+.perfume-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:400;margin-bottom:0.4rem;
+}
+.perfume-desc{font-size:0.78rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem}
+.perfume-notes{
+  display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.2rem;
+}
+.note-tag{
+  font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
+  border:1px solid var(--border);color:var(--pale);
+  padding:0.25rem 0.6rem;border-radius:1px;
+}
+.perfume-footer{display:flex;justify-content:space-between;align-items:center}
+.perfume-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;color:var(--gold);
+}
+.add-btn{
+  background:none;border:1px solid var(--border);color:var(--gold);
+  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;
+  padding:0.4rem 0.9rem;cursor:pointer;font-family:'Jost',sans-serif;
+  transition:background 0.2s,color 0.2s;border-radius:1px;
+}
+.add-btn:hover{background:var(--gold);color:var(--deep)}
+
+/* FEATURED */
+.featured{
+  padding:8rem 4rem;display:grid;
+  grid-template-columns:1fr 1fr;gap:0;
+  min-height:600px;
+}
+.featured-visual{
+  background:var(--emerald);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.featured-visual::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center, rgba(77,166,104,0.2), transparent 70%);
+}
+.featured-bottle-lg{width:200px;position:relative;z-index:1;filter:drop-shadow(0 30px 60px rgba(0,0,0,0.5))}
+.featured-content{
+  background:var(--deep);padding:5rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.featured-content .tag{
+  font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.5rem;display:block;
+}
+.featured-content h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,3.5vw,3rem);font-weight:300;
+  line-height:1.2;margin-bottom:1rem;
+}
+.featured-content h2 em{font-style:italic;color:var(--gold-lt)}
+.featured-content p{font-size:0.88rem;color:var(--muted);line-height:1.9;margin-bottom:0.8rem}
+.pyramid{margin:2rem 0}
+.pyramid-row{display:flex;gap:0.5rem;margin-bottom:0.8rem;align-items:center}
+.pyramid-label{
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);width:55px;
+}
+.pyramid-notes{display:flex;gap:5px;flex-wrap:wrap}
+.pyramid-note{
+  font-size:0.7rem;color:var(--pale);
+  border-bottom:1px solid var(--border);padding-bottom:1px;
+}
+
+/* PROCESS */
+.process{padding:8rem 4rem;background:var(--forest)}
+.process h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3.2rem);font-weight:300;
+  text-align:center;margin-bottom:5rem;
+}
+.process h2 em{font-style:italic;color:var(--gold-lt)}
+.process-steps{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);
+}
+.process-step{
+  background:var(--forest);padding:2.5rem 2rem;text-align:center;
+}
+.step-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;font-weight:300;color:rgba(201,168,76,0.15);
+  display:block;margin-bottom:1rem;
+}
+.step-icon{margin:0 auto 1.2rem;display:block}
+.step-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:400;margin-bottom:0.6rem;color:var(--cream);
+}
+.step-desc{font-size:0.78rem;color:var(--muted);line-height:1.6}
+
+/* TESTIMONIALS */
+.testimonials{padding:8rem 4rem;background:var(--deep);overflow:hidden}
+.test-header{text-align:center;margin-bottom:4rem}
+.test-header h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3.2rem);font-weight:300;
+}
+.test-header h2 em{font-style:italic;color:var(--gold-lt)}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.test-card{
+  background:var(--deep);padding:2.5rem;
+}
+.test-stars{color:var(--gold);font-size:0.8rem;margin-bottom:1.2rem;letter-spacing:0.1em}
+.test-text{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1.05rem;line-height:1.7;
+  color:var(--cream);margin-bottom:1.5rem;
+}
+.test-author{
+  font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);
+}
+
+/* NEWSLETTER */
+.newsletter{
+  padding:6rem 4rem;
+  background:var(--emerald);
+  display:flex;justify-content:space-between;align-items:center;gap:3rem;
+  flex-wrap:wrap;
+}
+.newsletter h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;
+}
+.newsletter h2 em{font-style:italic;color:var(--gold-lt)}
+.newsletter p{font-size:0.85rem;color:rgba(245,239,224,0.6);margin-top:0.5rem}
+.newsletter-form{display:flex;gap:0;flex:0 0 auto}
+.newsletter-form input{
+  background:rgba(6,19,9,0.5);border:1px solid rgba(201,168,76,0.3);
+  border-right:none;color:var(--cream);padding:0.9rem 1.5rem;
+  font-family:'Jost',sans-serif;font-size:0.82rem;
+  outline:none;width:280px;
+}
+.newsletter-form input::placeholder{color:rgba(245,239,224,0.3)}
+.newsletter-form button{
+  background:var(--gold);color:var(--deep);border:none;
+  padding:0.9rem 1.8rem;cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:0.7rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  transition:background 0.2s;white-space:nowrap;
+}
+.newsletter-form button:hover{background:var(--gold-lt)}
+
+/* FOOTER */
+footer{background:var(--deep);padding:5rem 4rem 2rem}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:3rem;padding-bottom:4rem;
+  border-bottom:1px solid var(--border);
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:300;letter-spacing:0.2em;
+  text-transform:uppercase;margin-bottom:1rem;display:block;
+}
+.footer-logo span{color:var(--gold)}
+.footer-brand p{font-size:0.82rem;color:var(--muted);line-height:1.8;max-width:260px}
+.footer-col h4{
+  font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.5rem;
+}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.7rem}
+.footer-col ul li a{
+  font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s;
+}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:2rem;font-size:0.7rem;color:rgba(245,239,224,0.2);
+  letter-spacing:0.08em;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes scrollDown{
+  0%,100%{opacity:0.2;transform:scaleY(0.8)}
+  50%{opacity:1;transform:scaleY(1)}
+}
+@keyframes marquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+.hero-bottle{animation:float 5s ease-in-out infinite}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-links{display:none}
+  .hero{padding:0 1.5rem;padding-top:5rem}
+  .hero-bottle{display:none}
+  .about,.featured{grid-template-columns:1fr;padding:4rem 1.5rem}
+  .about-right{grid-template-columns:1fr 1fr}
+  .collection{padding:4rem 1.5rem}
+  .col-header{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .process{padding:4rem 1.5rem}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .testimonials,.newsletter{padding:4rem 1.5rem}
+  .test-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  footer{padding:3rem 1.5rem 1.5rem}
+  .newsletter-form{flex-direction:column;width:100%}
+  .newsletter-form input{width:100%;border-right:1px solid rgba(201,168,76,0.3);border-bottom:none}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">KHAY<span>BAR</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Maison</a></li>
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#featured">Signature</a></li>
+    <li><a href="#process">Craft</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-icon">Shop now</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Maison de Parfum · Est. Khaybar</span>
+    </div>
+    <h1>Wear the<br><em>soul</em> of<br>the Orient.</h1>
+    <p class="hero-sub">Each fragrance is a journey — through ancient forests, sacred resins, and rare blooms. Crafted for those who understand that luxury is felt, not seen.</p>
+    <div class="hero-actions">
+      <a href="#collection" class="btn-gold">Explore collection</a>
+      <a href="#about" class="btn-ghost">Our story</a>
+    </div>
+  </div>
+  <!-- Decorative SVG bottle in hero -->
+  <div class="hero-bottle">
+    <svg viewBox="0 0 200 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bottleGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#1A4A25"/>
+          <stop offset="40%" stop-color="#2D7A42"/>
+          <stop offset="100%" stop-color="#0A1F0F"/>
+        </linearGradient>
+        <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#E8C97A"/>
+          <stop offset="100%" stop-color="#C9A84C"/>
+        </linearGradient>
+      </defs>
+      <!-- Bottle body -->
+      <rect x="40" y="100" width="120" height="200" rx="12" fill="url(#bottleGrad)" opacity="0.95"/>
+      <!-- Glass shine -->
+      <rect x="50" y="110" width="18" height="170" rx="9" fill="white" opacity="0.07"/>
+      <!-- Gold band top -->
+      <rect x="40" y="100" width="120" height="16" rx="4" fill="url(#goldGrad)" opacity="0.9"/>
+      <!-- Gold band bottom -->
+      <rect x="40" y="284" width="120" height="16" rx="4" fill="url(#goldGrad)" opacity="0.9"/>
+      <!-- Inner label area -->
+      <rect x="55" y="145" width="90" height="110" rx="4" fill="#0A1F0F" opacity="0.4"/>
+      <!-- Label text lines -->
+      <rect x="70" y="165" width="60" height="2" rx="1" fill="#C9A84C" opacity="0.7"/>
+      <rect x="65" y="178" width="70" height="8" rx="2" fill="#F5EFE0" opacity="0.15"/>
+      <rect x="72" y="195" width="56" height="2" rx="1" fill="#C9A84C" opacity="0.4"/>
+      <rect x="75" y="208" width="50" height="2" rx="1" fill="#A8D4B4" opacity="0.3"/>
+      <rect x="78" y="218" width="44" height="2" rx="1" fill="#A8D4B4" opacity="0.3"/>
+      <!-- Neck -->
+      <rect x="75" y="60" width="50" height="44" rx="6" fill="url(#bottleGrad)" opacity="0.9"/>
+      <rect x="75" y="60" width="50" height="8" rx="4" fill="url(#goldGrad)" opacity="0.8"/>
+      <!-- Cap -->
+      <rect x="70" y="20" width="60" height="44" rx="8" fill="url(#goldGrad)" opacity="0.95"/>
+      <rect x="80" y="30" width="40" height="24" rx="4" fill="#B8943C" opacity="0.5"/>
+      <!-- Ornament on cap -->
+      <circle cx="100" cy="14" r="6" fill="url(#goldGrad)" opacity="0.9"/>
+      <circle cx="100" cy="14" r="3" fill="#E8C97A"/>
+      <!-- Decorative dots -->
+      <circle cx="100" cy="270" r="3" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="88" cy="270" r="2" fill="#C9A84C" opacity="0.3"/>
+      <circle cx="112" cy="270" r="2" fill="#C9A84C" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Discover</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span>Oud & Amber</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Rose de Taif</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Musk Al Tahara</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Sandalwood</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Black Saffron</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Frankincense</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Attar Collection</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Bakhoor</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Oud & Amber</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Rose de Taif</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Musk Al Tahara</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Sandalwood</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Black Saffron</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Frankincense</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Attar Collection</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Bakhoor</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-left">
+    <span class="tag">Notre Maison</span>
+    <h2>Born from the<br><em>ancient</em> trade routes.</h2>
+    <p>Khaybar is named after the legendary oasis city of Arabia — a crossroads of cultures, caravans, and rare treasures. Our perfumes carry that same spirit: bold, storied, and unforgettable.</p>
+    <p>Every bottle is the result of meticulous sourcing from the world's finest regions — Indian oud, Bulgarian rose, Omani frankincense, and Moroccan amber — blended by master perfumers with decades of craft.</p>
+    <div class="stat-row">
+      <div class="stat-item">
+        <span class="stat-num">24</span>
+        <span class="stat-lbl">Fragrances</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">12</span>
+        <span class="stat-lbl">Countries sourced</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-lbl">Alcohol-free available</span>
+      </div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-box">
+      <div class="about-box-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="15" stroke="#C9A84C" stroke-width="0.5"/>
+          <path d="M16 6 L16 26 M6 16 L26 16" stroke="#C9A84C" stroke-width="0.5"/>
+          <circle cx="16" cy="16" r="6" stroke="#4DA668" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <h4>Global Sourcing</h4>
+      <p>Ingredients from 12 countries, hand-selected by our master blenders</p>
+    </div>
+    <div class="about-box">
+      <div class="about-box-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M8 24 C8 24 10 10 16 8 C22 10 24 24 24 24" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
+          <path d="M12 24 C12 18 14 12 16 10 C18 12 20 18 20 24" stroke="#4DA668" stroke-width="0.5" fill="none"/>
+          <line x1="8" y1="24" x2="24" y2="24" stroke="#C9A84C" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <h4>Pure Botanicals</h4>
+      <p>No synthetics in our core attar line — nature, undisturbed</p>
+    </div>
+    <div class="about-box">
+      <div class="about-box-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect x="10" y="6" width="12" height="20" rx="3" stroke="#C9A84C" stroke-width="0.5"/>
+          <rect x="12" y="4" width="8" height="4" rx="1" stroke="#4DA668" stroke-width="0.5"/>
+          <line x1="13" y1="14" x2="19" y2="14" stroke="#C9A84C" stroke-width="0.5"/>
+          <line x1="13" y1="18" x2="19" y2="18" stroke="#C9A84C" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <h4>Long Lasting</h4>
+      <p>Our oil-based attars last 12–18 hours on skin, guaranteed</p>
+    </div>
+    <div class="about-box">
+      <div class="about-box-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <polygon points="16,4 20,12 28,13 22,19 24,28 16,23 8,28 10,19 4,13 12,12" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
+          <polygon points="16,9 18,14 23,14 19,17 21,22 16,19 11,22 13,17 9,14 14,14" stroke="#4DA668" stroke-width="0.3" fill="none"/>
+        </svg>
+      </div>
+      <h4>Award Winning</h4>
+      <p>Recognized internationally for oud excellence and craftsmanship</p>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section class="collection" id="collection">
+  <div class="col-header">
+    <h2>The <em>Collection</em></h2>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterPerfumes('all',this)">All</button>
+      <button class="filter-tab" onclick="filterPerfumes('oud',this)">Oud</button>
+      <button class="filter-tab" onclick="filterPerfumes('floral',this)">Floral</button>
+      <button class="filter-tab" onclick="filterPerfumes('musk',this)">Musk</button>
+      <button class="filter-tab" onclick="filterPerfumes('attar',this)">Attar</button>
+    </div>
+  </div>
+  <div class="perfume-grid" id="perfumeGrid">
+
+    <!-- OUD family -->
+    <div class="perfume-card show" data-cat="oud">
+      <svg class="perfume-icon" viewBox="0 0 90 120" fill="none">
+        <rect x="20" y="35" width="50" height="75" rx="8" fill="#1A4A25"/>
+        <rect x="20" y="35" width="50" height="8" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="20" y="102" width="50" height="8" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="30" y="55" width="30" height="35" rx="2" fill="#0A1F0F" opacity="0.5"/>
+        <rect x="35" y="62" width="20" height="1.5" rx="1" fill="#C9A84C" opacity="0.7"/>
+        <rect x="33" y="70" width="24" height="6" rx="1" fill="#F5EFE0" opacity="0.1"/>
+        <rect x="35" y="82" width="20" height="1" rx="1" fill="#A8D4B4" opacity="0.5"/>
+        <rect x="33" y="18" width="24" height="20" rx="4" fill="#C9A84C" opacity="0.85"/>
+        <circle cx="45" cy="11" r="5" fill="#C9A84C"/>
+      </svg>
+      <span class="perfume-family">Oud Collection</span>
+      <h3 class="perfume-name">Oud Al Khaybar</h3>
+      <p class="perfume-desc">The crown jewel. Indian agarwood aged 25 years, enveloped in smoky amber and Cambodian oud.</p>
+      <div class="perfume-notes">
+        <span class="note-tag">Oud</span>
+        <span class="note-tag">Amber</span>
+        <span class="note-tag">Smoke</span>
+      </div>
+      <div class="perfume-footer">
+        <span class="perfume-price">$185</span>
+        <button class="add-btn">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="perfume-card show" data-cat="oud">
+      <svg class="perfume-icon" viewBox="0 0 90 120" fill="none">
+        <rect x="15" y="30" width="60" height="80" rx="5" fill="#0A1F0F"/>
+        <rect x="15" y="30" width="60" height="10" rx="3" fill="#C9A84C" opacity="0.9"/>
+        <rect x="15" y="100" width="60" height="10" rx="3" fill="#C9A84C" opacity="0.9"/>
+        <rect x="25" y="52" width="40" height="38" rx="2" fill="#1A4A25" opacity="0.6"/>
+        <rect x="31" y="60" width="28" height="1.5" rx="1" fill="#E8C97A" opacity="0.8"/>
+        <rect x="28" y="68" width="34" height="8" rx="2" fill="#F5EFE0" opacity="0.08"/>
+        <rect x="33" y="82" width="24" height="1" rx="1" fill="#A8D4B4" opacity="0.4"/>
+        <rect x="30" y="10" width="30" height="22" rx="3" fill="#0A1F0F"/>
+        <rect x="30" y="10" width="30" height="6" rx="3" fill="#C9A84C" opacity="0.8"/>
+        <rect x="35" y="4" width="20" height="8" rx="4" fill="#E8C97A" opacity="0.9"/>
+      </svg>
+      <span class="perfume-family">Oud Collection</span>
+      <h3 class="perfume-name">Black Oud Noir</h3>
+      <p class="perfume-desc">Dark, brooding and magnetic. Blackened oud from Borneo with vetiver and dark leather.</p>
+      <div class="perfume-notes">
+        <span class="note-tag">Dark Oud</span>
+        <span class="note-tag">Vetiver</span>
+        <span class="note-tag">Leather</span>
+      </div>
+      <div class="perfume-footer">
+        <span class="perfume-price">$210</span>
+        <button class="add-btn">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="perfume-card show" data-cat="oud">
+      <svg class="perfume-icon" viewBox="0 0 90 120" fill="none">
+        <ellipse cx="45" cy="85" rx="28" ry="40" fill="#2D7A42" opacity="0.6"/>
+        <ellipse cx="45" cy="85" rx="22" ry="34" fill="#1A4A25"/>
+        <rect x="38" y="30" width="14" height="18" rx="3" fill="#2D7A42"/>
+        <rect x="38" y="30" width="14" height="5" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="36" y="18" width="18" height="14" rx="5" fill="#C9A84C" opacity="0.9"/>
+        <rect x="34" y="60" width="22" height="25" rx="2" fill="#0A1F0F" opacity="0.5"/>
+        <rect x="37" y="67" width="16" height="1.5" rx="1" fill="#E8C97A" opacity="0.7"/>
+        <rect x="38" y="78" width="14" height="1" rx="1" fill="#A8D4B4" opacity="0.4"/>
+      </svg>
+      <span class="perfume-family">Oud Collection</span>
+      <h3 class="perfume-name">Oud & Rose Royale</h3>
+      <p class="perfume-desc">A delicate tension — Taif rose softening the rawness of Hindi oud with a saffron heart.</p>
+      <div class="perfume-notes">
+        <span class="note-tag">Oud</span>
+        <span class="note-tag">Taif Rose</span>
+        <span class="note-tag">Saffron</span>
+      </div>
+      <div class="perfume-footer">
+        <span class="perfume-price">$165</span>
+        <button class="add-btn">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="perfume-card show" data-cat="floral">
+      <svg class="perfume-icon" viewBox="0 0 90 120" fill="none">
+        <rect x="22" y="38" width="46" height="72" rx="10" fill="#1A4A25"/>
+        <rect x="22" y="38" width="46" height="10" rx="5" fill="#C9A84C" opacity="0.85"/>
+        <rect x="22" y="100" width="46" height="10" rx="5" fill="#C9A84C" opacity="0.85"/>
+        <circle cx="45" cy="70" r="14" fill="#0A1F0F" opacity="0.4"/>
+        <circle cx="45" cy="70" r="8" fill="none" stroke="#C9A84C" stroke-width="0.5"/>
+        <circle cx="45" cy="70" r="3" fill="#C9A84C" opacity="0.6"/>
+        <rect x="36" y="57" width="18" height="1.5" rx="1" fill="#E8C97A" opacity="0.6"/>
+        <rect x="38" y="84" width="14" height="1" rx="1" fill="#A8D4B4" opacity="0.4"/>
+        <rect x="34" y="16" width="22" height="24" rx="6" fill="#C9A84C" opacity="0.9"/>
+        <rect x="38" y="22" width="14" height="12" rx="3" fill="#B8943C" opacity="0.5"/>
+        <circle cx="45" cy="10" r="6" fill="#E8C97A"/>
+      </svg>
+      <span class="perfume-family">Floral Collection</span>
+      <h3 class="perfume-name">Rose de Khaybar</h3>
+      <p class="perfume-desc">Fifty kilos of Taif roses distilled into a single bottle. Velvety, feminine, eternal.</p>
+      <div class="perfume-notes">
+        <span class="note-tag">Rose</span>
+        <span class="note-tag">Musk</span>
+        <span class="note-tag">Sandalwood</span>
+      </div>
+      <div class="perfume-footer">
+        <span class="perfume-price">$140</span>
+        <button class="add-btn">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="perfume-card show" data-cat="floral">
+      <svg class="perfume-icon" viewBox="0 0 90 120" fill="none">
+        <rect x="18" y="32" width="54" height="80" rx="6" fill="#0d2912"/>
+        <rect x="18" y="32" width="54" height="12" rx="4" fill="#2D7A42" opacity="0.8"/>
+        <rect x="18" y="100" width="54" height="12" rx="4" fill="#2D7A42" opacity="0.8"/>
+        <rect x="28" y="56" width="34" height="40" rx="3" fill="#1A4A25" opacity="0.5"/>
+        <rect x="33" y="63" width="24" height="2" rx="1" fill="#C9A84C" opacity="0.7"/>
+        <rect x="30" y="72" width="30" height="8" rx="2" fill="#F5EFE0" opacity="0.07"/>
+        <rect x="33" y="86" width="24" height="1.5" rx="1" fill="#4DA668" opacity="0.4"/>
+        <rect x="32" y="12" width="26" height="22" rx="4" fill="#0d2912"/>
+        <rect x="32" y="12" width="26" height="6" rx="3" fill="#2D7A42" opacity="0.7"/>
+        <rect x="36" y="5" width="18" height="9" rx="4" fill="#C9A84C" opacity="0.85"/>
+      </svg>
+      <span class="perfume-family">Floral Collection</span>
+      <h3 class="perfume-name">Jasmine Nuit</h3>
+      <p class="perfume-desc">Egyptian jasmine absolute at full concentration — blooming at dusk over warm musk.</p>
+      <div class="perfume-notes">
+        <span class="note-tag">Jasmine</span>
+        <span class="note-tag">Tuberose</span>
+        <span class="note-tag">Musk</span>
+      </div>
+      <div class="perfume-footer">
+        <span class="perfume-price">$120</span>
+        <button class="add-btn">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="perfume-card show" data-cat="musk">
+      <svg class="perfume-icon" viewBox="0 0 90 120" fill="none">
+        <rect x="25" y="40" width="40" height="70" rx="20" fill="#1A4A25"/>
+        <rect x="27" y="42" width="8" height="58" rx="4" fill="white" opacity="0.05"/>
+        <rect x="25" y="40" width="40" height="10" rx="5" fill="#C9A84C" opacity="0.8"/>
+        <rect x="30" y="58" width="30" height="32" rx="3" fill="#0A1F0F" opacity="0.4"/>
+        <rect x="33" y="65" width="24" height="1.5" rx="1" fill="#E8C97A" opacity="0.7"/>
+        <rect x="35" y="78" width="20" height="1" rx="1" fill="#A8D4B4" opacity="0.4"/>
+        <rect x="35" y="20" width="20" height="22" rx="4" fill="#C9A84C" opacity="0.9"/>
+        <circle cx="45" cy="14" r="6" fill="#E8C97A" opacity="0.95"/>
+      </svg>
+      <span class="perfume-family">Musk Collection</span>
+      <h3 class="perfume-name">Musk Al Tahara</h3>
+      <p class="perfume-desc">Pure white musk — ethereal, skin-close, and endlessly clean. The scent of ritual purity.</p>
+      <div class="perfume-notes">
+        <span class="note-tag">White Musk</span>
+        <span class="note-tag">Amber</span>
+        <span class="note-tag">Cedar</span>
+      </div>
+      <div class="perfume-footer">
+        <span class="perfume-price">$95</span>
+        <button class="add-btn">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="perfume-card show" data-cat="musk">
+      <svg class="perfume-icon" viewBox="0 0 90 120" fill="none">
+        <polygon points="45,30 65,50 65,100 25,100 25,50" fill="#1A4A25"/>
+        <polygon points="45,30 65,50 65,58 25,58 25,50" fill="#C9A84C" opacity="0.7"/>
+        <polygon points="25,92 65,92 65,100 25,100" fill="#C9A84C" opacity="0.7"/>
+        <rect x="30" y="62" width="30" height="26" rx="2" fill="#0A1F0F" opacity="0.4"/>
+        <rect x="34" y="69" width="22" height="1.5" rx="1" fill="#E8C97A" opacity="0.6"/>
+        <rect x="36" y="80" width="18" height="1" rx="1" fill="#A8D4B4" opacity="0.4"/>
+        <rect x="36" y="10" width="18" height="22" rx="3" fill="#1A4A25"/>
+        <rect x="36" y="10" width="18" height="5" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="38" y="4" width="14" height="7" rx="3" fill="#E8C97A" opacity="0.9"/>
+      </svg>
+      <span class="perfume-family">Musk Collection</span>
+      <h3 class="perfume-name">Musk Noir</h3>
+      <p class="perfume-desc">Black musk and oud resin — deeply sensual, mysterious. An evening companion without equal.</p>
+      <div class="perfume-notes">
+        <span class="note-tag">Black Musk</span>
+        <span class="note-tag">Oud Resin</span>
+        <span class="note-tag">Patchouli</span>
+      </div>
+      <div class="perfume-footer">
+        <span class="perfume-price">$115</span>
+        <button class="add-btn">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="perfume-card show" data-cat="attar">
+      <svg class="perfume-icon" viewBox="0 0 90 120" fill="none">
+        <ellipse cx="45" cy="90" rx="20" ry="25" fill="#1A4A25"/>
+        <rect x="38" y="38" width="14" height="55" rx="7" fill="#1A4A25"/>
+        <rect x="38" y="38" width="14" height="8" rx="4" fill="#C9A84C" opacity="0.8"/>
+        <ellipse cx="45" cy="38" rx="12" ry="5" fill="#2D7A42" opacity="0.6"/>
+        <rect x="40" y="58" width="10" height="22" rx="2" fill="#0A1F0F" opacity="0.4"/>
+        <rect x="41" y="63" width="8" height="1" rx="1" fill="#E8C97A" opacity="0.6"/>
+        <rect x="41" y="72" width="8" height="1" rx="1" fill="#A8D4B4" opacity="0.4"/>
+        <rect x="36" y="18" width="18" height="22" rx="9" fill="#C9A84C" opacity="0.9"/>
+        <circle cx="45" cy="12" r="7" fill="#E8C97A"/>
+        <circle cx="45" cy="12" r="3" fill="#C9A84C" opacity="0.8"/>
+      </svg>
+      <span class="perfume-family">Attar Collection</span>
+      <h3 class="perfume-name">Attar Al Bukhoor</h3>
+      <p class="perfume-desc">Traditional oil attar inspired by sacred bakhoor smoke — frankincense, myrrh, and aged oud chips.</p>
+      <div class="perfume-notes">
+        <span class="note-tag">Frankincense</span>
+        <span class="note-tag">Myrrh</span>
+        <span class="note-tag">Bakhoor</span>
+      </div>
+      <div class="perfume-footer">
+        <span class="perfume-price">$145</span>
+        <button class="add-btn">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="perfume-card show" data-cat="attar">
+      <svg class="perfume-icon" viewBox="0 0 90 120" fill="none">
+        <rect x="28" y="36" width="34" height="74" rx="4" fill="#0A1F0F"/>
+        <rect x="28" y="36" width="34" height="8" rx="2" fill="#C9A84C" opacity="0.85"/>
+        <rect x="28" y="102" width="34" height="8" rx="2" fill="#C9A84C" opacity="0.85"/>
+        <rect x="34" y="56" width="22" height="36" rx="2" fill="#1A4A25" opacity="0.5"/>
+        <rect x="37" y="63" width="16" height="1.5" rx="1" fill="#E8C97A" opacity="0.7"/>
+        <rect x="38" y="75" width="14" height="1" rx="1" fill="#A8D4B4" opacity="0.4"/>
+        <rect x="34" y="86" width="22" height="8" rx="2" fill="#C9A84C" opacity="0.15"/>
+        <rect x="36" y="15" width="18" height="23" rx="3" fill="#0A1F0F"/>
+        <rect x="36" y="15" width="18" height="6" rx="3" fill="#C9A84C" opacity="0.8"/>
+        <rect x="38" y="8" width="14" height="8" rx="4" fill="#C9A84C" opacity="0.9"/>
+        <circle cx="45" cy="5" r="4" fill="#E8C97A"/>
+      </svg>
+      <span class="perfume-family">Attar Collection</span>
+      <h3 class="perfume-name">Saffron & Sandalwood</h3>
+      <p class="perfume-desc">Crimson saffron threads from Kashmir, warm sandalwood from Mysore. Opulent and grounding.</p>
+      <div class="perfume-notes">
+        <span class="note-tag">Saffron</span>
+        <span class="note-tag">Sandalwood</span>
+        <span class="note-tag">Vanilla</span>
+      </div>
+      <div class="perfume-footer">
+        <span class="perfume-price">$155</span>
+        <button class="add-btn">Add to cart</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured" id="featured">
+  <div class="featured-visual">
+    <svg class="featured-bottle-lg" viewBox="0 0 160 300" fill="none">
+      <defs>
+        <linearGradient id="fg1" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#1A4A25"/>
+          <stop offset="50%" stop-color="#2D7A42"/>
+          <stop offset="100%" stop-color="#0A1F0F"/>
+        </linearGradient>
+        <linearGradient id="fg2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#E8C97A"/>
+          <stop offset="100%" stop-color="#C9A84C"/>
+        </linearGradient>
+      </defs>
+      <rect x="30" y="90" width="100" height="180" rx="10" fill="url(#fg1)"/>
+      <rect x="38" y="98" width="14" height="152" rx="7" fill="white" opacity="0.06"/>
+      <rect x="30" y="90" width="100" height="18" rx="6" fill="url(#fg2)" opacity="0.9"/>
+      <rect x="30" y="252" width="100" height="18" rx="6" fill="url(#fg2)" opacity="0.9"/>
+      <rect x="44" y="122" width="72" height="90" rx="4" fill="#0A1F0F" opacity="0.45"/>
+      <rect x="54" y="132" width="52" height="2" rx="1" fill="#E8C97A" opacity="0.8"/>
+      <rect x="50" y="144" width="60" height="14" rx="3" fill="#F5EFE0" opacity="0.07"/>
+      <rect x="54" y="168" width="52" height="1.5" rx="1" fill="#A8D4B4" opacity="0.5"/>
+      <rect x="58" y="178" width="44" height="1.5" rx="1" fill="#A8D4B4" opacity="0.3"/>
+      <rect x="58" y="190" width="44" height="1" rx="1" fill="#A8D4B4" opacity="0.2"/>
+      <rect x="55" y="220" width="50" height="16" rx="2" fill="#C9A84C" opacity="0.12"/>
+      <rect x="50" y="54" width="60" height="40" rx="6" fill="url(#fg1)"/>
+      <rect x="50" y="54" width="60" height="10" rx="5" fill="url(#fg2)" opacity="0.85"/>
+      <rect x="44" y="22" width="72" height="36" rx="10" fill="url(#fg2)" opacity="0.95"/>
+      <rect x="56" y="30" width="48" height="20" rx="5" fill="#B8943C" opacity="0.4"/>
+      <circle cx="80" cy="12" r="10" fill="url(#fg2)"/>
+      <circle cx="80" cy="12" r="4" fill="#E8C97A"/>
+    </svg>
+  </div>
+  <div class="featured-content">
+    <span class="tag">Signature Fragrance</span>
+    <h2>Oud Al<br><em>Khaybar</em></h2>
+    <p>Our most coveted creation. A journey begins with the first breath — smoky, ancient, unmistakably Arabian. This is the fragrance that started it all.</p>
+    <p>Aged 25-year Indian agarwood at its heart, elevated by Cambodian oud and Somalian amber, with a base of sacred frankincense that lingers on skin for 18 hours.</p>
+    <div class="pyramid">
+      <div class="pyramid-row">
+        <span class="pyramid-label">Top</span>
+        <div class="pyramid-notes">
+          <span class="pyramid-note">Saffron</span>
+          <span class="pyramid-note">Pink Pepper</span>
+          <span class="pyramid-note">Cardamom</span>
+        </div>
+      </div>
+      <div class="pyramid-row">
+        <span class="pyramid-label">Heart</span>
+        <div class="pyramid-notes">
+          <span class="pyramid-note">Indian Oud</span>
+          <span class="pyramid-note">Cambodian Oud</span>
+          <span class="pyramid-note">Rose Absolute</span>
+        </div>
+      </div>
+      <div class="pyramid-row">
+        <span class="pyramid-label">Base</span>
+        <div class="pyramid-notes">
+          <span class="pyramid-note">Frankincense</span>
+          <span class="pyramid-note">Amber</span>
+          <span class="pyramid-note">Musk</span>
+        </div>
+      </div>
+    </div>
+    <a href="#collection" class="btn-gold">Shop now — $185</a>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <h2>The art of <em>crafting</em> scent</h2>
+  <div class="process-steps">
+    <div class="process-step">
+      <span class="step-num">01</span>
+      <svg class="step-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="17" stroke="#C9A84C" stroke-width="0.5"/>
+        <path d="M10 26 C10 26 14 10 18 8 C22 10 26 26 26 26" stroke="#4DA668" stroke-width="1" fill="none"/>
+        <circle cx="18" cy="8" r="3" fill="#C9A84C" opacity="0.6"/>
+      </svg>
+      <h3 class="step-title">Ingredient Sourcing</h3>
+      <p class="step-desc">Our master blenders travel to India, Cambodia, Oman, and Morocco to hand-select each raw material at peak harvest.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-num">02</span>
+      <svg class="step-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <rect x="8" y="12" width="20" height="18" rx="3" stroke="#C9A84C" stroke-width="0.5"/>
+        <path d="M14 12 L14 8 Q18 5 22 8 L22 12" stroke="#4DA668" stroke-width="1" fill="none"/>
+        <line x1="12" y1="20" x2="24" y2="20" stroke="#C9A84C" stroke-width="0.5"/>
+        <line x1="12" y1="24" x2="24" y2="24" stroke="#C9A84C" stroke-width="0.5"/>
+      </svg>
+      <h3 class="step-title">Distillation</h3>
+      <p class="step-desc">Traditional steam distillation and cold-press extraction preserve every nuance of the raw ingredients, unchanged.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-num">03</span>
+      <svg class="step-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="10" stroke="#C9A84C" stroke-width="0.5"/>
+        <circle cx="18" cy="18" r="5" stroke="#4DA668" stroke-width="0.5"/>
+        <line x1="18" y1="4" x2="18" y2="10" stroke="#C9A84C" stroke-width="0.5"/>
+        <line x1="18" y1="26" x2="18" y2="32" stroke="#C9A84C" stroke-width="0.5"/>
+        <line x1="4" y1="18" x2="10" y2="18" stroke="#C9A84C" stroke-width="0.5"/>
+        <line x1="26" y1="18" x2="32" y2="18" stroke="#C9A84C" stroke-width="0.5"/>
+      </svg>
+      <h3 class="step-title">Blending</h3>
+      <p class="step-desc">Our perfumers hand-blend each accord in small batches, allowing each layer to marry before adding the next.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-num">04</span>
+      <svg class="step-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <rect x="12" y="8" width="12" height="22" rx="4" stroke="#C9A84C" stroke-width="0.5"/>
+        <rect x="14" y="5" width="8" height="5" rx="2" stroke="#4DA668" stroke-width="0.5"/>
+        <line x1="15" y1="16" x2="21" y2="16" stroke="#C9A84C" stroke-width="0.5"/>
+        <line x1="15" y1="20" x2="21" y2="20" stroke="#C9A84C" stroke-width="0.5"/>
+        <polygon points="18,24 20,28 16,28" fill="#C9A84C" opacity="0.4"/>
+      </svg>
+      <h3 class="step-title">Bottling & Aging</h3>
+      <p class="step-desc">Each blend rests for a minimum of 6 weeks before bottling — allowing the fragrance to fully mature and harmonize.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="test-header">
+    <h2>Words from our <em>family</em></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Oud Al Khaybar stopped me in my tracks. I have tried hundreds of ouds — this is different. Ancient, sacred, and impossibly beautiful."</p>
+      <span class="test-author">— Tariq A., Dubai</span>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"The Rose de Khaybar is the most true-to-life rose I have ever smelled in a perfume. It blooms on skin for hours. I will never buy another rose fragrance."</p>
+      <span class="test-author">— Fatima K., London</span>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Musk Al Tahara has become my daily ritual. Pure, clean, and deeply comforting. I receive compliments every single time I wear it."</p>
+      <span class="test-author">— Youssef M., Paris</span>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div>
+    <h2>Join the <em>Khaybar</em> circle.</h2>
+    <p>Exclusive launches, stories from our perfumers, and early access to limited editions.</p>
+  </div>
+  <form class="newsletter-form" onsubmit="return false">
+    <input type="email" placeholder="Your email address">
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo">KHAY<span>BAR</span></span>
+      <p>A maison de parfum rooted in the ancient traditions of Arabian fragrance, crafted for the modern connoisseur.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Collection</h4>
+      <ul>
+        <li><a href="#">Oud Collection</a></li>
+        <li><a href="#">Floral Collection</a></li>
+        <li><a href="#">Musk Collection</a></li>
+        <li><a href="#">Attar Collection</a></li>
+        <li><a href="#">Gift Sets</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Maison</h4>
+      <ul>
+        <li><a href="#">Our story</a></li>
+        <li><a href="#">The craft</a></li>
+        <li><a href="#">Ingredients</a></li>
+        <li><a href="#">Journal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Service</h4>
+      <ul>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Khaybar Maison de Parfum. All rights reserved.</span>
+    <span>Crafted with reverence for the ancient art of scent.</span>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
+  ring.style.transform = `translate(${e.clientX - 16}px, ${e.clientY - 16}px)`;
+});
+
+// Filter perfumes
+function filterPerfumes(cat, btn) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.perfume-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.classList.add('show');
+    } else {
+      card.classList.remove('show');
+    }
+  });
+}
+
+// Add to cart buttons
+document.querySelectorAll('.add-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.textContent = 'Added';
+    this.style.background = 'var(--gold)';
+    this.style.color = 'var(--deep)';
+    setTimeout(() => {
+      this.textContent = 'Add to cart';
+      this.style.background = '';
+      this.style.color = '';
+    }, 2000);
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.perfume-card, .about-box, .process-step, .test-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
